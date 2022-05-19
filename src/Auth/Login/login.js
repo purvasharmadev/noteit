@@ -99,13 +99,6 @@ function Login() {
           </h4>
         </form>
       </div>
-      {/* <div>
-        <img
-          src="https://static.dw.com/image/59472921_303.jpg"
-          className="img-responsive"
-          alt="banner"
-        />
-      </div> */}
     </div>
   );
 }
