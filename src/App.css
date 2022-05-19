@@ -1,3 +1,10 @@
-.App {
-  text-align: center;
+:root{
+  --PRIMARY-COLOR:#ffde59;
+  --SECONDARY-COLOR:red;
+  --TEXT-COLOR:#2d1adb;
+  --BACKGROUND-COLOR:grey;
+}
+
+.h-100{
+  height: 100vh;
 }
