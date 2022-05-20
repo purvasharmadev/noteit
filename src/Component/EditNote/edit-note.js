@@ -15,10 +15,13 @@ function EditNote() {
 
   const getNote = () => {
     setNote(state.notesList.find((item) => item._id === id));
+
   };
 
   useEffect(() => {
     getNote();
+    console.log(note)
+  // eslint-disable-next-line
   }, []);
 
   const handleFormSubmit = (e) => {

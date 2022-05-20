@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import {useNotes} from "../../Context/notes-context"
 import { Link } from "react-router-dom";
 import {Modal} from "../../Component/ModalForm/note-modal"
