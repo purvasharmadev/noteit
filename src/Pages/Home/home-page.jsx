@@ -21,7 +21,7 @@ export function HomePage() {
           {isLoggedIn ? (
               <>
             <Link to="/notes">Add now!</Link>
-            <button onClick={logOut}>Logout!</button>
+            <button className="btn btn-primary" onClick={logOut}>Logout!</button>
               </>
 
           ) : (
