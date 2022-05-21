@@ -5,12 +5,17 @@ import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Archive() {
-  const { archiveList, getArchive, restoreArchive } = useArchive();
+  const { archiveList, getArchive, restoreArchive,deleteFromArchive } = useArchive();
   const { dispatch, deleteNotes } = useNotes();
 
   function removeFromArchiveHandler(id) {
     restoreArchive(id);
   }
+
+  function deleteFromArchiveHandler(id){
+      deleteFromArchive(id)
+  }
+
 
   useEffect(() => {
     getArchive();
@@ -60,7 +65,7 @@ function Archive() {
 
                     <p
                       onClick={() => {
-                        deleteNotes(item._id);
+                        deleteFromArchiveHandler(item._id);
                       }}
                       className="text-small pointer"
                     >
@@ -68,7 +73,6 @@ function Archive() {
                     </p>
                     <p
                       onClick={() => {
-                        console.log("cliked restore");
                         removeFromArchiveHandler(item._id);
                       }}
                       className="text-small pointer"
