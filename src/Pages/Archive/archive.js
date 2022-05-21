@@ -6,7 +6,7 @@ import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Archive() {
   const { archiveList, getArchive, restoreArchive,deleteFromArchive } = useArchive();
-  const { dispatch, deleteNotes } = useNotes();
+  const { dispatch } = useNotes();
 
   function removeFromArchiveHandler(id) {
     restoreArchive(id);
