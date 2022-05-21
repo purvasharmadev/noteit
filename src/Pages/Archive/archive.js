@@ -1,34 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNotes } from "../../Context/notes-context";
 import { Link } from "react-router-dom";
 import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 
-function Notes() {
-  const { state, dispatch, deleteNotes } = useNotes();
-  const { postNotesToArchive } = useArchive();
+function Archive() {
+  const { archiveList, getArchive, restoreArchive,deleteFromArchive } = useArchive();
+  const { dispatch } = useNotes();
 
-  const postToArchiveHandler = (id) => {
-    postNotesToArchive(id);
-  };
+  function removeFromArchiveHandler(id) {
+    restoreArchive(id);
+  }
 
-  let list = state.notesList;
+  function deleteFromArchiveHandler(id){
+      deleteFromArchive(id)
+  }
+
+
+  useEffect(() => {
+    getArchive();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
-      <h1 className="text-center color-primary">Notes</h1>
+      <h1 className="text-center color-primary">Archive notes</h1>
+
       <div className="p-1 notes flex">
         <Sidebar />
 
-        {/* notes container */}
         <div className="flex flex-wrap w-100 h-100">
-          {list && list.length < 1 ? (
+          {archiveList && archiveList.length < 1 ? (
             <div className="container">
               <h2>Add notes</h2>
             </div>
           ) : (
-            list &&
-            list.map((item) => {
+            archiveList &&
+            archiveList.map((item) => {
               return (
                 <div key={item._id} className="card m-1">
                   <div className="card-heading p-1 color-primary bold">
@@ -57,7 +65,7 @@ function Notes() {
 
                     <p
                       onClick={() => {
-                        deleteNotes(item._id);
+                        deleteFromArchiveHandler(item._id);
                       }}
                       className="text-small pointer"
                     >
@@ -65,11 +73,11 @@ function Notes() {
                     </p>
                     <p
                       onClick={() => {
-                        postToArchiveHandler(item._id);
+                        removeFromArchiveHandler(item._id);
                       }}
                       className="text-small pointer"
                     >
-                      Archive
+                      Restore
                     </p>
                   </div>
                 </div>
@@ -82,4 +90,4 @@ function Notes() {
   );
 }
 
-export { Notes };
+export { Archive };

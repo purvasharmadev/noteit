@@ -44,3 +44,7 @@ option{
   font-size: 10px;
 }
 
+.notes .sidebar{
+  width:25%;
+}
+
