@@ -68,6 +68,8 @@ function NotesProvider({ children }) {
             title: state.title,
             tags: state.tags,
             notes: state.notes,
+            color:state.color,
+            priority:state.priority
           },
         },
         {
@@ -84,7 +86,6 @@ function NotesProvider({ children }) {
   }
 
   async function editNotes(id, newItem) {
-    console.log("edit item ", id, newItem);
     try {
       const res = await axios.post(
         `/api/notes/${id}`,

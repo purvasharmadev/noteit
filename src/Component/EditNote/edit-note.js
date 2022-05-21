@@ -54,12 +54,15 @@ function EditNote() {
             <div>
               <label htmlFor="tags">Tags </label>
               <select
+              value={state.tags}
                 onChange={(e) => {
                   setUpdatedNote((prev) => ({ ...prev, tags: e.target.value }));
                   dispatch({ type: "tags", payload: e.target.value });
                 }}
               >
-                <option>Code</option>
+                {
+                  state.tags ?<option>{state.tags}</option>: <option>{updatedNote.tags}</option>
+                }
                 <option>Work</option>
                 <option>Health</option>
                 <option>Exercise</option>
@@ -70,9 +73,14 @@ function EditNote() {
               <label htmlFor="color">Color </label>
               <select
                 onChange={(e) => {
+                  setUpdatedNote((prev) => ({ ...prev, color: e.target.value }));
                   dispatch({ type: "color", payload: e.target.value });
                 }}
               >
+                {
+                  state.color ?                 <option>{state.color}</option>: <option>{updatedNote.color}</option>
+                }
+
                 <option>Red</option>
                 <option>Purple</option>
                 <option>Blue</option>
@@ -89,6 +97,9 @@ function EditNote() {
                   dispatch({ type: "priority", payload: e.target.value });
                 }}
               >
+                {
+                  state.priority ?<option>{state.priority}</option>: <option>{updatedNote.priority}</option>
+                }
                 <option>High</option>
                 <option>Medium</option>
                 <option>Low</option>

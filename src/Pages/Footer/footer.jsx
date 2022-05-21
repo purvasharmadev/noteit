@@ -12,16 +12,8 @@ function Footer() {
             Home
           </Link>
 
-          <Link to="/product" className="nav-link link">
-            Trending Movies
-          </Link>
-
-          <Link to="/" className="nav-link link">
-            Popular Shows
-          </Link>
-
-          <Link to="/login" className="nav-link link">
-            Login / Signup
+          <Link to="/notes" className="nav-link link">
+            Notes
           </Link>
 
           <p className="text-center color-white">
@@ -47,7 +39,7 @@ function Footer() {
           </p>
         </div>
         <p className="color-white text-center">
-          Kvideo | Made with React | ©{" "}
+          NoteIt | Made with React | ©{" "}
           <a
             href="https://purvasharma.netlify.app/"
             className="link color-white"
