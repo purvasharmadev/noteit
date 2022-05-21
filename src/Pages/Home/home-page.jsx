@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth-context";
 
 export function HomePage() {
-  const { isLoggedIn,logOut } = useAuth();
+  const { isLoggedIn, logOut } = useAuth();
   return (
     <div className="Home">
       <header className="Home-header">
@@ -19,11 +19,12 @@ export function HomePage() {
         <p className="brand-description">Organise your days!!</p>
         <div className="links">
           {isLoggedIn ? (
-              <>
-            <Link to="/notes">Add now!</Link>
-            <button className="btn btn-primary" onClick={logOut}>Logout!</button>
-              </>
-
+            <>
+              <Link to="/notes">Add now!</Link>
+              <button className="btn btn-primary" onClick={logOut}>
+                Logout!
+              </button>
+            </>
           ) : (
             <>
               <Link to="/login">Login</Link>
