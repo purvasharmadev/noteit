@@ -13,6 +13,7 @@ import { HomePage } from "./Pages/Home/home-page";
 import { Notes } from "./Pages/Notes/notes";
 import { EditNote } from "./Component/EditNote/edit-note";
 import { Archive } from "./Pages/Archive/archive";
+import { Trash } from "./Pages/Trash/trash";
 export default function URLRoutes() {
   const { isLoggedIn } = useAuth();
 
@@ -35,6 +36,7 @@ export default function URLRoutes() {
         <Route path="/notes" element={<Notes />} />
         <Route path="/edit/:id" element={<EditNote />} replace={true} />
         <Route path="/archives" element={<Archive />} replace={true} />
+        <Route path="/trash" element={<Trash />} replace={true} />
       </Route>
     </Routes>
   );
