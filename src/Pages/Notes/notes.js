@@ -12,7 +12,6 @@ function Notes() {
   const { trashModal, setTrashModal } = useTrash();
   const [noteId, setNoteId] = useState();
   const [noteList, setNoteList] = useState(state.notesList);
-  const [bgColor,setBgColor] = useState("")
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
