@@ -39,7 +39,7 @@ function Footer() {
           </p>
         </div>
         <p className="color-white text-center">
-          Kvideo | Made with React | ©{" "}
+          NoteIt | Made with React | ©{" "}
           <a
             href="https://purvasharma.netlify.app/"
             className="link color-white"

@@ -4,7 +4,6 @@ import { useNotes } from "../../Context/notes-context";
 export function Modal({ closeModal }) {
   const { state, dispatch, postNotes, setOpenModal } = useNotes();
 
-  console.log("note tags ", state.tags);
   // Handle Submit
   const handleFormSubmit = (e) => {
     e.preventDefault();

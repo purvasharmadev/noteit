@@ -38,7 +38,7 @@ function Archive() {
             archiveList &&
             archiveList.map((item) => {
               return (
-                <div key={item._id} className="card m-1">
+                <div style={{backgroundColor:item.color}} key={item._id} className="card m-1">
                   <div className="card-heading p-1 color-primary bold">
                     {item.title}
                   </div>
@@ -50,18 +50,6 @@ function Archive() {
                     )}
                   </div>
                   <div className="flex flex-space-between color-primary bold p-1">
-                    <p className="text-small pointer">
-                      <Link
-                        className="link color-primary"
-                        onClick={() => {
-                          dispatch({ type: "title", payload: item.title });
-                          dispatch({ type: "notes", payload: item.notes });
-                        }}
-                        to={`/edit/${item._id}`}
-                      >
-                        Edit
-                      </Link>
-                    </p>
 
                     <p
                       onClick={() => {
