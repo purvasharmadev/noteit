@@ -7,7 +7,7 @@ import {useTrash} from "../../Context/trash-context"
 import { TrashModal } from "../../Component/ModalForm/trash-modal";
 
 function Notes() {
-  const { state, dispatch, deleteNotes } = useNotes();
+  const { state, dispatch} = useNotes();
   const { postNotesToArchive } = useArchive();
   const {trashModal,setTrashModal} = useTrash();
   const [noteId,setNoteId] = useState()

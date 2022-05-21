@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNotes } from "../../Context/notes-context";
 import { Link } from "react-router-dom";
 import { useTrash } from "../../Context/trash-context";

@@ -3,14 +3,13 @@ import { useNotes } from "../../Context/notes-context";
 import { useTrash } from "../../Context/trash-context";
 
 export function TrashModal({ closeModal, id }) {
-  const { state, dispatch, deleteNotes } = useNotes();
-  const { postNotesToTrash, trashModal, setTrashModal } = useTrash();
+  const { deleteNotes } = useNotes();
+  const { postNotesToTrash} = useTrash();
 
   const postToTrashHandler = (id) => {
     console.log("from modal ", id);
     postNotesToTrash(id);
   };
-  console.log("note tags ", state.tags);
 
   return (
     <div className="modal modal-trash">
@@ -29,7 +28,7 @@ export function TrashModal({ closeModal, id }) {
             {" "}
             Permanently Delete{" "}
           </button>
-          <button onClick={() => postToTrashHandler(id)} className="modal-btn">
+          <button onClick={() =>postToTrashHandler(id)} className="modal-btn">
             {" "}
             Move to trash{" "}
           </button>
