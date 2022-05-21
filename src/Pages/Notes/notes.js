@@ -12,7 +12,6 @@ function Notes() {
   const { trashModal, setTrashModal } = useTrash();
   const [noteId, setNoteId] = useState();
   const [noteList, setNoteList] = useState(state.notesList);
-  const [bgColor,setBgColor] = useState("")
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
@@ -90,7 +89,7 @@ function Notes() {
             noteList &&
             noteList.map((item) => {
               return (
-                <div style={{backgroundColor:state.color}} key={item._id} className="card m-1">
+                <div style={{backgroundColor:item.color}} key={item._id} className="card m-1">
                   <div className="card-heading p-1 color-primary bold">
                     {item.title}
                   </div>
