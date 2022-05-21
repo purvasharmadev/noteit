@@ -1,21 +1,35 @@
-import React from "react";
+import React,{useState} from "react";
 import { useNotes } from "../../Context/notes-context";
 import { Link } from "react-router-dom";
 import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
+import {useTrash} from "../../Context/trash-context"
+import { TrashModal } from "../../Component/ModalForm/trash-modal";
 
 function Notes() {
   const { state, dispatch, deleteNotes } = useNotes();
   const { postNotesToArchive } = useArchive();
+  const {trashModal,setTrashModal} = useTrash();
+  const [noteId,setNoteId] = useState()
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
   };
 
+  const deleteNotesHandler = (id)=>{
+    setTrashModal(true);
+    setNoteId(id)
+  }
+
   let list = state.notesList;
 
   return (
     <>
+          {trashModal && (
+        <div className="modal-div">
+          <TrashModal closeModal={setTrashModal} id={noteId} />
+        </div>
+      )}
       <h1 className="text-center color-primary">Notes</h1>
       <div className="p-1 notes flex">
         <Sidebar />
@@ -56,9 +70,10 @@ function Notes() {
                     </p>
 
                     <p
-                      onClick={() => {
-                        deleteNotes(item._id);
-                      }}
+                      // onClick={() => {
+                      //   deleteNotes(item._id);
+                      // }}
+                      onClick={()=>deleteNotesHandler(item._id)}
                       className="text-small pointer"
                     >
                       Delete
