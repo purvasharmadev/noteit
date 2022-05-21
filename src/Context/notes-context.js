@@ -22,6 +22,8 @@ function NotesProvider({ children }) {
         return { ...state, title: action.payload };
       case "tags":
         return { ...state, tags: action.payload };
+      case "color":
+          return { ...state, color: action.payload };
       case "priority":
         return { ...state, priority: action.payload };
       case "notes":
@@ -35,6 +37,7 @@ function NotesProvider({ children }) {
           tags: "Work",
           priority: "High",
           notes: "edit this template",
+          color:"grey"
         };
       case "CLEAR_notes":
         return { ...state, title: "", tags: "", priority: "", notes: "" };
@@ -50,6 +53,7 @@ function NotesProvider({ children }) {
     tags: "",
     notes: "",
     priority: "",
+    color:"",
     notesList: getDataFromLocal("notes", []),
     tagsArr: ["Work", "Code", "Health", "Exercise", "Chores"],
     priorityArr: ["High", "Medium", "Low"],

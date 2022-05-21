@@ -59,6 +59,18 @@ export function Modal({ closeModal }) {
               </select>
             </div>
             <div>
+              <label htmlFor="color">Color </label>
+              <select
+                onChange={(e) => {
+                  dispatch({ type: "color", payload: e.target.value });
+                }}
+              >
+                <option>Red</option>
+                <option>Purple</option>
+                <option>Blue</option>
+              </select>
+            </div>
+            <div>
               <label htmlFor="priority">Priority </label>
               <select
                 onChange={(e) => {

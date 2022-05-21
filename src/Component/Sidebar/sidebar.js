@@ -10,17 +10,18 @@ function Sidebar() {
 
   return (
     <div className="flex flex-column sidebar">
-      {location.pathname === "/archives" || "/trash" ? (
-        <Link to="/notes" className="btn btn-primary mb-1">
-          <BsFillPencilFill /> All Notes
-        </Link>
-      ) : (
+      {location.pathname === "/notes" ? (
         <button
-          onClick={() => setOpenModal(true)}
-          className="btn btn-primary mb-1"
-        >
-          <BsFillPencilFill /> Add Note
-        </button>
+        onClick={() => setOpenModal(true)}
+        className="btn btn-primary mb-1"
+      >
+        <BsFillPencilFill /> Add Note
+      </button>
+      ) : (
+        <Link to="/notes" className="btn btn-primary mb-1">
+        <BsFillPencilFill /> All Notes
+      </Link>
+
       )}
 
       <Link to="/archives" className="btn btn-primary mb-1">
