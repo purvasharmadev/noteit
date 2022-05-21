@@ -28,4 +28,9 @@
       border-top: none;
   }
 
+  .modal-div .modal-trash{
+    font-size:1rem;
+    height: 30%;
+  }
+
   

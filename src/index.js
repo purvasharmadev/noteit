@@ -12,6 +12,7 @@ import {NotesProvider} from "./Context/notes-context"
 // Call make Server
 
 import {ArchiveProvider} from "./Context/archive-context"
+import {TrashProvider} from "./Context/trash-context"
 makeServer();
 
 ReactDOM.render(
@@ -20,7 +21,9 @@ ReactDOM.render(
       <AuthProvider>
         <NotesProvider>
           <ArchiveProvider>
-          <App />
+            <TrashProvider>
+            <App />
+            </TrashProvider>
           </ArchiveProvider>
         </NotesProvider>
       </AuthProvider>

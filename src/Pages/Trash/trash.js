@@ -1,48 +1,35 @@
-import React,{useState} from "react";
+import React from "react";
 import { useNotes } from "../../Context/notes-context";
 import { Link } from "react-router-dom";
-import { useArchive } from "../../Context/archive-context";
+import { useTrash } from "../../Context/trash-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
-import {useTrash} from "../../Context/trash-context"
-import { TrashModal } from "../../Component/ModalForm/trash-modal";
 
-function Notes() {
-  const { state, dispatch} = useNotes();
-  const { postNotesToArchive } = useArchive();
-  const {trashModal,setTrashModal} = useTrash();
-  const [noteId,setNoteId] = useState()
+function Trash() {
+  const { TrashList, setTrashList } = useTrash();
+  const { dispatch, deleteNotes } = useNotes();
 
-  const postToArchiveHandler = (id) => {
-    postNotesToArchive(id);
+  console.log("tl ", TrashList);
+
+  const trashNoteHandler = (item) => {
+    let obj = TrashList.find((i) => i._id === item._id);
+    setTrashList(() => TrashList[obj] === 0);
   };
-
-  const deleteNotesHandler = (id)=>{
-    setTrashModal(true);
-    setNoteId(id)
-  }
-
-  let list = state.notesList;
 
   return (
     <>
-          {trashModal && (
-        <div className="modal-div">
-          <TrashModal closeModal={setTrashModal} id={noteId} />
-        </div>
-      )}
-      <h1 className="text-center color-primary">Notes</h1>
+      <h1 className="text-center color-primary">trash notes</h1>
+
       <div className="p-1 notes flex">
         <Sidebar />
 
-        {/* notes container */}
         <div className="flex flex-wrap w-100 h-100">
-          {list && list.length < 1 ? (
+          {TrashList && TrashList.length < 1 ? (
             <div className="container">
               <h2>Add notes</h2>
             </div>
           ) : (
-            list &&
-            list.map((item) => {
+            TrashList &&
+            TrashList.map((item) => {
               return (
                 <div key={item._id} className="card m-1">
                   <div className="card-heading p-1 color-primary bold">
@@ -70,21 +57,13 @@ function Notes() {
                     </p>
 
                     <p
-                      // onClick={() => {
-                      //   deleteNotes(item._id);
-                      // }}
-                      onClick={()=>deleteNotesHandler(item._id)}
-                      className="text-small pointer"
-                    >
-                      Delete
-                    </p>
-                    <p
                       onClick={() => {
-                        postToArchiveHandler(item._id);
+                        deleteNotes(item._id);
+                        trashNoteHandler(item);
                       }}
                       className="text-small pointer"
                     >
-                      Archive
+                      Delete
                     </p>
                   </div>
                 </div>
@@ -97,4 +76,4 @@ function Notes() {
   );
 }
 
-export { Notes };
+export { Trash };
