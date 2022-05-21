@@ -10,6 +10,8 @@ import { AuthProvider } from "./Auth/auth-context";
 // NotesProvider
 import {NotesProvider} from "./Context/notes-context"
 // Call make Server
+
+import {ArchiveProvider} from "./Context/archive-context"
 makeServer();
 
 ReactDOM.render(
@@ -17,7 +19,9 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthProvider>
         <NotesProvider>
-        <App />
+          <ArchiveProvider>
+          <App />
+          </ArchiveProvider>
         </NotesProvider>
       </AuthProvider>
     </BrowserRouter>

@@ -12,6 +12,7 @@ import { RestrictedRoute } from "./Auth/AuthRoutes/RestrictedRoutes";
 import { HomePage } from "./Pages/Home/home-page";
 import { Notes } from "./Pages/Notes/notes";
 import { EditNote } from "./Component/EditNote/edit-note";
+import { Archive } from "./Pages/Archive/archive";
 export default function URLRoutes() {
   const { isLoggedIn } = useAuth();
 
@@ -33,6 +34,7 @@ export default function URLRoutes() {
       <Route path="/" element={<PrivateRoute login={isLoggedIn} />}>
         <Route path="/notes" element={<Notes />} />
         <Route path="/edit/:id" element={<EditNote />} replace={true} />
+        <Route path="/archives" element={<Archive />} replace={true} />
       </Route>
     </Routes>
   );
