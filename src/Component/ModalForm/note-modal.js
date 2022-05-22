@@ -16,7 +16,7 @@ export function Modal({ closeModal }) {
         <div className="modal-header flex flex-space-between align-item-center color-primary">
           <h3>Add note</h3>
           <h3 onClick={() => closeModal(false)} className="alert-close-btn">
-            ×
+            X
           </h3>
         </div>
         <form onSubmit={handleFormSubmit} className="form-container text-left">

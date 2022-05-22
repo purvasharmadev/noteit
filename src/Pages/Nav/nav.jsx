@@ -45,7 +45,7 @@ function Nav() {
           <>
             <li className="nav-item">
               <span onClick={logOut} className=" nav-link link pointer">
-              <span><BsPersonCircle/></span>  Logout
+                Logout
               </span>
             </li>
           </>

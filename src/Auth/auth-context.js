@@ -24,7 +24,6 @@ function AuthProvider({ children }) {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
 
-  console.log("isLOggedIn ", isLoggedIn)
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn,logOut }}>
       {children}
