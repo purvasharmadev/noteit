@@ -40,7 +40,7 @@ function NotesProvider({ children }) {
           color:"grey"
         };
       case "CLEAR_notes":
-        return { ...state, title: "", tags: "",color:"", priority: "", notes: "" };
+        return { ...state, title: "", tags: "Work",color:"grey", priority: "High", notes: "" };
       default:
         return state;
     }
@@ -50,10 +50,10 @@ function NotesProvider({ children }) {
   // useReducer
   const [state, dispatch] = useReducer(reducerFn, {
     title: "",
-    tags: "",
+    tags: "Work",
     notes: "",
-    priority: "",
-    color:"",
+    priority: "High",
+    color:"grey",
     notesList: getDataFromLocal("notes", []),
     tagsArr: ["Work", "Code", "Health", "Exercise", "Chores"],
     priorityArr: ["High", "Medium", "Low"],
