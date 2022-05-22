@@ -4,7 +4,6 @@ import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Archive() {
   const { archiveList, getArchive, restoreArchive,deleteArchive } = useArchive();
-
   function removeFromArchiveHandler(id) {
     restoreArchive(id);
   }
@@ -12,7 +11,7 @@ function Archive() {
   function deleteArchiveHandler(id){
     deleteArchive(id)
   }
-
+  
   useEffect(() => {
     getArchive();
     // eslint-disable-next-line

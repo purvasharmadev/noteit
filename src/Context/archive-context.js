@@ -49,6 +49,23 @@ function ArchiveProvider({ children }) {
     }
   }
 
+  async function deleteFromArchive(id) {
+    try {
+      const res = await axios.delete(
+        `/api/archives/delete/${id}`,
+         {
+          headers: {
+            "content-type": "text/json",
+            authorization: localStorage.getItem("userToken"),
+          },
+        }
+      );
+      setArchiveList(res.data.archives)
+    } catch (error) {
+      console.error(error.response.data.errors[0]);
+    }
+  }
+
   async function restoreArchive(id) {
     try {
       const res = await axios.post(
