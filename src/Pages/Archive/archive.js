@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { useNotes } from "../../Context/notes-context";
-import { Link } from "react-router-dom";
 import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Archive() {
-  const { archiveList, getArchive, restoreArchive } = useArchive();
-  const { dispatch, deleteNotes } = useNotes();
+  const { archiveList, getArchive, restoreArchive,deleteArchive } = useArchive();
 
   function removeFromArchiveHandler(id) {
     restoreArchive(id);
+  }
+
+  function deleteArchiveHandler(id){
+    deleteArchive(id)
   }
 
   useEffect(() => {
@@ -48,7 +49,7 @@ function Archive() {
 
                     <p
                       onClick={() => {
-                        deleteNotes(item._id);
+                        deleteArchiveHandler(item._id)
                       }}
                       className="text-small pointer"
                     >
@@ -56,7 +57,6 @@ function Archive() {
                     </p>
                     <p
                       onClick={() => {
-                        console.log("cliked restore");
                         removeFromArchiveHandler(item._id);
                       }}
                       className="text-small pointer"
