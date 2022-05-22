@@ -83,7 +83,7 @@ function Login() {
           <div className="p-1">
             <span
               onClick={() => guestLogin()}
-              className="link position-right color-primary"
+              className="link position-right color-primary pointer"
             >
               Guest Login
             </span>

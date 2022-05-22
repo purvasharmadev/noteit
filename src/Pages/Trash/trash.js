@@ -1,17 +1,17 @@
 import React from "react";
 import { useNotes } from "../../Context/notes-context";
-import { Link } from "react-router-dom";
 import { useTrash } from "../../Context/trash-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Trash() {
   const { TrashList, setTrashList } = useTrash();
-  const { dispatch, deleteNotes } = useNotes();
+  const { deleteNotes } = useNotes();
 
 
   const trashNoteHandler = (item) => {
-    let obj = TrashList.find((i) => i._id === item._id);
-    setTrashList(() => TrashList[obj] === 0);
+    // let obj = TrashList.find((i) => i._id === item._id);
+    let newList = TrashList.filter((j)=>j._id !== item._id)
+    setTrashList(newList)
   };
 
   return (

@@ -7,7 +7,6 @@ export function TrashModal({ closeModal, id }) {
   const { postNotesToTrash} = useTrash();
 
   const postToTrashHandler = (id) => {
-    console.log("from modal ", id);
     postNotesToTrash(id);
   };
 

@@ -5,13 +5,14 @@ import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 import { useTrash } from "../../Context/trash-context";
 import { TrashModal } from "../../Component/ModalForm/trash-modal";
+import {getDataFromLocal} from "../../Hooks/useLocalStorage"
 
 function Notes() {
   const { state, dispatch } = useNotes();
   const { postNotesToArchive } = useArchive();
   const { trashModal, setTrashModal } = useTrash();
   const [noteId, setNoteId] = useState();
-  const [noteList, setNoteList] = useState(state.notesList);
+  const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
@@ -107,6 +108,9 @@ function Notes() {
                         onClick={() => {
                           dispatch({ type: "title", payload: item.title });
                           dispatch({ type: "notes", payload: item.notes });
+                          dispatch({type:"color",payload:item.color});
+                          dispatch({type:"tags",payload:item.tags});
+                          dispatch({type:"priority",payload:item.priority});
                         }}
                         to={`/edit/${item._id}`}
                       >

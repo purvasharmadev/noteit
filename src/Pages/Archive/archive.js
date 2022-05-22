@@ -1,22 +1,17 @@
 import React, { useEffect } from "react";
-import { useNotes } from "../../Context/notes-context";
-import { Link } from "react-router-dom";
 import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 
 function Archive() {
-  const { archiveList, getArchive, restoreArchive,deleteFromArchive } = useArchive();
-  const { dispatch } = useNotes();
-
+  const { archiveList, getArchive, restoreArchive,deleteArchive } = useArchive();
   function removeFromArchiveHandler(id) {
     restoreArchive(id);
   }
 
-  function deleteFromArchiveHandler(id){
-      deleteFromArchive(id)
+  function deleteArchiveHandler(id){
+    deleteArchive(id)
   }
-
-
+  
   useEffect(() => {
     getArchive();
     // eslint-disable-next-line
@@ -53,7 +48,7 @@ function Archive() {
 
                     <p
                       onClick={() => {
-                        deleteFromArchiveHandler(item._id);
+                        deleteArchiveHandler(item._id)
                       }}
                       className="text-small pointer"
                     >

@@ -40,7 +40,7 @@ function NotesProvider({ children }) {
           color:"grey"
         };
       case "CLEAR_notes":
-        return { ...state, title: "", tags: "", priority: "", notes: "" };
+        return { ...state, title: "", tags: "Work",color:"grey", priority: "High", notes: "" };
       default:
         return state;
     }
@@ -50,10 +50,10 @@ function NotesProvider({ children }) {
   // useReducer
   const [state, dispatch] = useReducer(reducerFn, {
     title: "",
-    tags: "",
+    tags: "Work",
     notes: "",
-    priority: "",
-    color:"",
+    priority: "High",
+    color:"grey",
     notesList: getDataFromLocal("notes", []),
     tagsArr: ["Work", "Code", "Health", "Exercise", "Chores"],
     priorityArr: ["High", "Medium", "Low"],
@@ -80,6 +80,7 @@ function NotesProvider({ children }) {
         }
       );
       dispatch({ type: "notes_LIST", payload: res.data.notes });
+      dispatch({ type: "CLEAR_notes"});
     } catch (error) {
       console.error(error.response.data.errors[0]);
     }
@@ -87,6 +88,7 @@ function NotesProvider({ children }) {
 
   async function editNotes(id, newItem) {
     try {
+      console.log("newItem ", newItem)
       const res = await axios.post(
         `/api/notes/${id}`,
         {
@@ -99,7 +101,6 @@ function NotesProvider({ children }) {
           },
         }
       );
-      console.log("edit ", res.data.notes);
       dispatch({ type: "notes_LIST", payload: res.data.notes });
       navigateTo("/notes");
       dispatch({ type: "CLEAR_notes" });
@@ -124,12 +125,14 @@ function NotesProvider({ children }) {
 
   // Saving notes in localStorage
   useEffect(() => {
-    // getNotes();
-    localStorage.setItem("notes", JSON.stringify(state.notesList));
+    if(state.notesList !== undefined){
+      localStorage.setItem("notes", JSON.stringify(state.notesList));
+
+    }else{
+      localStorage.setItem("notes",[])
+    }
   }, [state.notesList]);
 
-  //   postNotes();
-  console.log("state ", state);
 
   return (
     <NotesContext.Provider

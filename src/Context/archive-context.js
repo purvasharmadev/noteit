@@ -1,13 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState,useEffect } from "react";
 import axios from "axios";
 import { useNotes } from "./notes-context";
+import { getDataFromLocal } from "../Hooks/useLocalStorage";
+
 
 const ArchiveContext = createContext();
 
 function ArchiveProvider({ children }) {
   const { state, dispatch } = useNotes();
 
-  const [archiveList, setArchiveList] = useState([]);
+  const [archiveList, setArchiveList] = useState(getDataFromLocal("archive", []));
 
   async function getArchive() {
     try {
@@ -17,7 +19,6 @@ function ArchiveProvider({ children }) {
           authorization: localStorage.getItem("userToken"),
         },
       });
-      console.log("archive ", res);
       setArchiveList(res.data.archives);
     } catch (error) {
       console.error(error.response.data.errors[0]);
@@ -42,29 +43,12 @@ function ArchiveProvider({ children }) {
           },
         }
       );
-      console.log("archives post ", res);
       dispatch({ type: "notes_LIST", payload: res.data.notes });
     } catch (error) {
       console.error(error.response.data.errors[0]);
     }
   }
 
-  async function deleteFromArchive(id) {
-    try {
-      const res = await axios.delete(
-        `/api/archives/delete/${id}`,
-         {
-          headers: {
-            "content-type": "text/json",
-            authorization: localStorage.getItem("userToken"),
-          },
-        }
-      );
-      setArchiveList(res.data.archives)
-    } catch (error) {
-      console.error(error.response.data.errors[0]);
-    }
-  }
 
   async function restoreArchive(id) {
     try {
@@ -78,7 +62,6 @@ function ArchiveProvider({ children }) {
           },
         }
       );
-      console.log("archive restore ", res);
       setArchiveList(res.data.archives);
       dispatch({ type: "notes_LIST", payload: res.data.notes });
     } catch (error) {
@@ -86,7 +69,27 @@ function ArchiveProvider({ children }) {
     }
   }
 
-  console.log("archive from context ", archiveList);
+  async function deleteArchive(id) {
+    try {
+      const res = await axios.delete(
+        `/api/archives/delete/${id}`,
+        {
+          headers: {
+            "content-type": "text/json",
+            authorization: localStorage.getItem("userToken"),
+          },
+        }
+      );
+      setArchiveList(res.data.archives);
+    } catch (error) {
+      console.error(error.response.data.errors[0]);
+    }
+  }
+
+  // Saving archive in localStorage
+  useEffect(() => {
+    localStorage.setItem("archive", JSON.stringify(archiveList));
+  }, [archiveList]);
 
   return (
     <ArchiveContext.Provider
@@ -96,7 +99,7 @@ function ArchiveProvider({ children }) {
         getArchive,
         restoreArchive,
         postNotesToArchive,
-        deleteFromArchive
+        deleteArchive
       }}
     >
       {children}
