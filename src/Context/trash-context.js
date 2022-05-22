@@ -16,6 +16,7 @@ function TrashProvider({ children }) {
     setTrashList((prev) => [...prev, obj]);
     let list = state.notesList.filter((item)=>item._id !== id)
     dispatch({type:"notes_LIST",payload:list})
+    setTrashModal(false)
   };
 
     // Saving notes in localStorage
