@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
-import {BsPlayCircleFill,BsPersonCircle} from "react-icons/bs"
+
 
 import { useAuth } from "../../Auth/auth-context";
 
@@ -21,8 +21,7 @@ function Nav() {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tomboy_logo.svg/1200px-Tomboy_logo.svg.png"
           className="nav-logo img-responsive img-rounded"
-          alt=""
-          srcset=""
+          alt="logo"
         />
         <Link to="/" className="nav-link link">
           NoteIt
@@ -39,9 +38,7 @@ function Nav() {
         {/* Explore */}
         <li className="nav-item">
           <Link to="/" className=" nav-link link">
-            <span>
-            <BsPlayCircleFill/>
-              </span>Home
+            Home
           </Link>
         </li>
         {isLoggedIn ? (
@@ -55,7 +52,7 @@ function Nav() {
         ) : (
           <li className="nav-item">
             <Link to="/login" className=" nav-link link">
-            <span><BsPersonCircle/></span>   Login
+                 Login
             </Link>
           </li>
         )}
