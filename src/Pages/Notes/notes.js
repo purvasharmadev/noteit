@@ -8,11 +8,11 @@ import { TrashModal } from "../../Component/ModalForm/trash-modal";
 import {getDataFromLocal} from "../../Hooks/useLocalStorage"
 
 function Notes() {
-  const { state, dispatch } = useNotes();
+  const { state, dispatch, noteList,setNoteList } = useNotes();
   const { postNotesToArchive } = useArchive();
   const { trashModal, setTrashModal } = useTrash();
   const [noteId, setNoteId] = useState();
-  const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
+  // const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
@@ -35,9 +35,8 @@ function Notes() {
           <TrashModal closeModal={setTrashModal} id={noteId} />
         </div>
       )}
-      <h1 className="text-center color-primary">Notes</h1>
       <div className="flex flex-space-center">
-        <div className="flex flex-space-evenly">
+        {/* <div className="flex flex-space-evenly">
           <button
             onClick={() => {
               let list = state.notesList;
@@ -74,7 +73,7 @@ function Notes() {
               </button>
             );
           })}
-        </div>
+        </div> */}
       </div>
 
       <div className="p-1 notes flex">

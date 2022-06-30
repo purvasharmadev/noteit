@@ -13,6 +13,8 @@ const NotesContext = createContext();
 
 function NotesProvider({ children }) {
   const [openModal, setOpenModal] = useState(false);
+  const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
+
 
   const navigateTo = useNavigate();
   // Reducer Function
@@ -144,6 +146,8 @@ function NotesProvider({ children }) {
         deleteNotes,
         openModal,
         setOpenModal,
+        noteList,
+        setNoteList
       }}
     >
       {children}

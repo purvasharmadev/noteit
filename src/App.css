@@ -5,6 +5,10 @@
   --BACKGROUND-COLOR:grey;
 }
 
+
+.color-grey{
+  color: var(--BACKGROUND-COLOR);
+}
 .h-100{
   height: 100vh;
 }
@@ -44,9 +48,10 @@ option{
   font-size: 10px;
 }
 
-.notes .sidebar{
+/* .notes .sidebar{
   width:25%;
-}
+  border:solid;
+} */
 
 .btn-primary-outline{
   color:var(--TEXT-COLOR);
