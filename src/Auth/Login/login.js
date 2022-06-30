@@ -80,17 +80,17 @@ function Login() {
             name="password"
             placeholder="********"
           />
-          <div className="p-1">
-            <span
-              onClick={() => guestLogin()}
-              className="link position-right color-primary pointer"
-            >
-              Guest Login
-            </span>
-          </div>
-          <button type="submit" className="btn btn-primary ">
+
+          <button type="submit" className="btn btn-primary mb-1 ">
             Login
           </button>
+
+            <button type="submit"
+              onClick={() => guestLogin()}
+              className="btn btn-secondary "
+            >
+              Guest Login
+            </button>
 
           <h4>
             <Link to="/signUp" className="link color-primary">
