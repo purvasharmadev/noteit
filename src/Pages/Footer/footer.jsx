@@ -16,33 +16,33 @@ function Footer() {
             Notes
           </Link>
 
-          <p className="text-center color-white">
+          <p className="text-center">
             Follow me on :
             <a
               href="https://www.instagram.com/purva.codes/"
-              className="p-1 color-white link"
+              className="p-1 link"
             >
               <BsInstagram />
             </a>
             <a
               href="https://twitter.com/Purva_Sharma__"
-              className="p-1 color-white"
+              className="p-1"
             >
               <BsTwitter />
             </a>
             <a
               href="https://www.linkedin.com/in/purva-sharma1999/"
-              className="p-1 color-white"
+              className="p-1"
             >
               <BsLinkedin />
             </a>
           </p>
         </div>
-        <p className="color-white text-center">
+        <p className= "text-center">
           NoteIt | Made with React | ©{" "}
           <a
             href="https://purvasharma.netlify.app/"
-            className="link color-white"
+            className="link"
           >
             Purva Sharma{" "}
           </a>

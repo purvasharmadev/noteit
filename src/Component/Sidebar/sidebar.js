@@ -2,12 +2,13 @@ import React,{useState} from "react";
 import "./sidebar.css"
 import { BsLightbulb , BsTrashFill,BsFillSave2Fill,BsTagFill } from "react-icons/bs";
 import { useNotes } from "../../Context/notes-context";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "../../Component/ModalForm/note-modal";
 
 function Sidebar() {
   const { openModal, setOpenModal, state,setNoteList} = useNotes();
   const location = useLocation();
+  const navigateTo = useNavigate()
   const [active,setActive] = useState("notes")
 
   return (
@@ -16,36 +17,17 @@ function Sidebar() {
         <div onClick={() => {
               let list = state.notesList;
               setNoteList(list);
+              setActive("notes")
+              if(location.pathname !== '/notes'){
+                navigateTo("/notes")
+                setActive("")
+              }
             }} className="mb-1 flex align-item-center p-0 row link" 
             id={active==="notes" ? "active":""}
             >
         <span><BsLightbulb/></span>
          <span>All Notes</span>
          </div>
-
-      {/* {location.pathname === "/notes" ? (
-        <div
-        id={active==="notes" ? "active":""}
-        onClick={() => {
-          setOpenModal(true)
-          setActive("notes")
-        }}
-        className="mb-1 flex align-item-center p-0 row link"
-      >
-        <span><BsFillPencilFill /></span>
-         <span>Add Note</span>
-      </div>
-      ) : (
-        <Link to="/notes" className="link" >
-        <div className="mb-1 flex align-item-center p-0 row" >
-        <span><BsLightbulb/></span>
-         <span>All Notes</span>
-         </div>
-
-      </Link>
-
-
-      )} */}
 
       <span className="divider"></span>
       <h4 className="color-grey">Labels</h4>
@@ -55,7 +37,10 @@ function Sidebar() {
               onClick={() => {
                 let list = state.notesList.filter((i) => i.tags === item);
                 setNoteList(list);
-                setActive(item)
+                setActive(item);
+                if(location.pathname !== "/notes"){
+                  navigateTo("/notes")
+                }
               }}
               id={active === item ? "active":""}
                className="mb-1 flex align-item-center p-0 row link">
