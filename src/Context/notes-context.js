@@ -8,13 +8,13 @@ import React, {
 import { getDataFromLocal } from "../Hooks/useLocalStorage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NotesContext = createContext();
 
 function NotesProvider({ children }) {
   const [openModal, setOpenModal] = useState(false);
   const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
-
 
   const navigateTo = useNavigate();
   // Reducer Function
@@ -83,14 +83,24 @@ function NotesProvider({ children }) {
       );
       dispatch({ type: "notes_LIST", payload: res.data.notes });
       dispatch({ type: "CLEAR_notes"});
+      toast.success("Note added!", {
+        id: "post-success",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.danger(error.response.data.errors[0], {
+        id: "post-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
   async function editNotes(id, newItem) {
     try {
-      console.log("newItem ", newItem)
       const res = await axios.post(
         `/api/notes/${id}`,
         {
@@ -106,8 +116,18 @@ function NotesProvider({ children }) {
       dispatch({ type: "notes_LIST", payload: res.data.notes });
       navigateTo("/notes");
       dispatch({ type: "CLEAR_notes" });
+      toast.success("Note edited!", {
+        id: "edit-note-success",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } catch (error) {
       console.error(error.resposne.data.errors[0]);
+      toast.error(error.resposne.data.errors[0], {
+        id: "edit-post-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
@@ -120,8 +140,18 @@ function NotesProvider({ children }) {
         },
       });
       dispatch({ type: "notes_LIST", payload: res.data.notes });
+      toast.error("Note deleted!", {
+        id: "delete-post-success",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.error(error.resposne.data.errors[0], {
+        id: "delete-post-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 

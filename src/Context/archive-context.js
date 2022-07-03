@@ -2,6 +2,7 @@ import { createContext, useContext, useState,useEffect } from "react";
 import axios from "axios";
 import { useNotes } from "./notes-context";
 import { getDataFromLocal } from "../Hooks/useLocalStorage";
+import {toast} from "react-toastify";
 
 
 const ArchiveContext = createContext();
@@ -20,8 +21,14 @@ function ArchiveProvider({ children }) {
         },
       });
       setArchiveList(res.data.archives);
+
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.danger(error.response.data.errors[0], {
+        id: "getpost-archive-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
@@ -44,8 +51,19 @@ function ArchiveProvider({ children }) {
         }
       );
       dispatch({ type: "notes_LIST", payload: res.data.notes });
+      toast.success("Note archived!", {
+        id: "post-archive-success",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.danger(error.response.data.errors[0], {
+        id: "post-archive-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
@@ -63,9 +81,20 @@ function ArchiveProvider({ children }) {
         }
       );
       setArchiveList(res.data.archives);
+
       dispatch({ type: "notes_LIST", payload: res.data.notes });
+      toast.success("Note restored!", {
+        id: "post-archive-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.danger(error.response.data.errors[0], {
+        id: "post-restore-archive-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
@@ -81,8 +110,19 @@ function ArchiveProvider({ children }) {
         }
       );
       setArchiveList(res.data.archives);
+      toast.error("Note deleted from archived!", {
+        id: "post-delete-archive-success",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      
     } catch (error) {
       console.error(error.response.data.errors[0]);
+      toast.danger(error.response.data.errors[0], {
+        id: "post-archive-delete-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   }
 
