@@ -5,12 +5,32 @@
   --BACKGROUND-COLOR:grey;
 }
 
+.color-text{
+  color: var(--TEXT-COLOR);
+}
 
+
+.text-right{
+  text-align: right;
+}
+
+.h-10{
+  height: 10%;
+}
 .color-grey{
   color: var(--BACKGROUND-COLOR);
 }
 .h-100{
-  height: 100vh;
+  height: 100%;
+  max-height:100%;
+}
+
+.opacity{
+  opacity:0.4;
+}
+
+.flex-space-end{
+  justify-content: end;
 }
 
 .ml-1{
@@ -80,3 +100,11 @@ option{
   color: yellow;
 }
 
+.modal-trash{
+  background-color: white;
+  opacity:1;
+}
+
+.color-danger{
+  color: red;
+}

@@ -1,9 +1,12 @@
 footer {
     background-color: var(--GRAY-COLOR);
     height: 6rem;
-    bottom: 0;
+    color: var(--SECONDARY-COLOR);
   }
   footer div {
     height: 3rem;
-    margin-bottom:1rem;
+  }
+
+  footer .nav-link,a{
+    color: var(--SECONDARY-COLOR);
   }
