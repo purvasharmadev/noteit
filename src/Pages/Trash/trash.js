@@ -16,15 +16,13 @@ function Trash() {
 
   return (
     <>
-      <h1 className="text-center color-primary">trash notes</h1>
-
       <div className="p-1 notes flex">
         <Sidebar />
 
         <div className="flex flex-wrap w-100 h-100">
           {TrashList && TrashList.length < 1 ? (
             <div className="container">
-              <h2>Add notes</h2>
+              <h2>Trash is empty!!</h2>
             </div>
           ) : (
             TrashList &&

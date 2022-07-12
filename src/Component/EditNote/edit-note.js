@@ -30,7 +30,7 @@ function EditNote() {
 
   return (
     <>
-      <h1>Edit Notes</h1>
+      <h1 className="text-center color-primary">Edit Notes</h1>
       <div className="flex w-100 flex-space-center p-1">
         {/* form */}
         <form
@@ -63,6 +63,7 @@ function EditNote() {
                 <option>Health</option>
                 <option>Exercise</option>
                 <option>Chores</option>
+                <option>Code</option>
               </select>
             </div>
             <div>

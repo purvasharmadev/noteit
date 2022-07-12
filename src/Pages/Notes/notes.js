@@ -5,14 +5,14 @@ import { useArchive } from "../../Context/archive-context";
 import { Sidebar } from "../../Component/Sidebar/sidebar";
 import { useTrash } from "../../Context/trash-context";
 import { TrashModal } from "../../Component/ModalForm/trash-modal";
-import {getDataFromLocal} from "../../Hooks/useLocalStorage"
+import { BsFillPencilFill,BsTrashFill,BsFillSave2Fill } from "react-icons/bs";
+
 
 function Notes() {
-  const { state, dispatch } = useNotes();
+  const { state, dispatch, noteList,setNoteList,setOpenModal } = useNotes();
   const { postNotesToArchive } = useArchive();
   const { trashModal, setTrashModal } = useTrash();
   const [noteId, setNoteId] = useState();
-  const [noteList, setNoteList] = useState(getDataFromLocal("notes", []));
 
   const postToArchiveHandler = (id) => {
     postNotesToArchive(id);
@@ -23,9 +23,9 @@ function Notes() {
     setNoteId(id);
   };
 
-
   useEffect(() => {
     setNoteList(state.notesList);
+    //eslint-disable-next-line
   }, [state.notesList]);
 
   return (
@@ -35,55 +35,19 @@ function Notes() {
           <TrashModal closeModal={setTrashModal} id={noteId} />
         </div>
       )}
-      <h1 className="text-center color-primary">Notes</h1>
-      <div className="flex flex-space-center">
-        <div className="flex flex-space-evenly">
-          <button
-            onClick={() => {
-              let list = state.notesList;
-              setNoteList(list);
-            }}
-            className="btn btn-primary-outline m-1"
-          >
-            All
-          </button>
-
-          {state.tagsArr.map((item) => {
-            return (
-              <button
-                onClick={() => {
-                  let list = state.notesList.filter((i) => i.tags === item);
-                  setNoteList(list);
-                }}
-                className="btn btn-primary-outline m-1"
-              >
-                {item}
-              </button>
-            );
-          })}
-          {state.priorityArr.map((item) => {
-            return (
-              <button
-                onClick={() => {
-                  let list = state.notesList.filter((i) => i.priority === item);
-                  setNoteList(list);
-                }}
-                className="btn btn-primary-outline m-1"
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       <div className="p-1 notes flex">
         <Sidebar />
-
+     
         {/* notes container */}
-        <div className="flex flex-wrap w-100 h-100">
+        <div className="flex flex-wrap h-100 w-100">
+          <div className=" text-right w-100 h-10">
+          <span onClick={()=>setOpenModal(true)} className="text-normal p-1 pointer color-text"><BsFillPencilFill/> Add Notes</span>
+          </div>
+            <div className="flex flex-space-left w-100 flex-wrap ">
+
           {noteList && noteList.length < 1 ? (
-            <div className="container">
+            <div className="flex flex-space-center align-item-center w-100 flex-column">
+              <img  height="300px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tomboy_logo.svg/1200px-Tomboy_logo.svg.png" alt="logo"/>
               <h2>Add notes</h2>
             </div>
           ) : (
@@ -114,7 +78,7 @@ function Notes() {
                         }}
                         to={`/edit/${item._id}`}
                       >
-                        Edit
+                       <BsFillPencilFill/> Edit
                       </Link>
                     </p>
 
@@ -125,7 +89,7 @@ function Notes() {
                       onClick={() => deleteNotesHandler(item._id)}
                       className="text-small pointer"
                     >
-                      Delete
+                     <BsTrashFill/>  Delete
                     </p>
                     <p
                       onClick={() => {
@@ -133,15 +97,18 @@ function Notes() {
                       }}
                       className="text-small pointer"
                     >
-                      Archive
+                     <BsFillSave2Fill/> Archive
                     </p>
                   </div>
 
                 </div>
+
               );
             })
           )}
         </div>
+        </div>
+
       </div>
     </>
   );

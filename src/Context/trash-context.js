@@ -1,6 +1,7 @@
 import { createContext, useContext, useState,useEffect } from "react";
 import { useNotes } from "./notes-context";
 import { getDataFromLocal } from "../Hooks/useLocalStorage";
+import {toast} from "react-toastify";
 
 
 const TrashContext = createContext();
@@ -17,6 +18,11 @@ function TrashProvider({ children }) {
     let list = state.notesList.filter((item)=>item._id !== id)
     dispatch({type:"notes_LIST",payload:list})
     setTrashModal(false)
+    toast.success("Note moved to trash!", {
+      id: "post-trash-success",
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
   };
 
     // Saving notes in localStorage
